@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1 class="app-settings-header">File Observer</h1>
+    <div>
+        <p>Программа фильтрует файлы по папкам на рабочем столе</p>
+    </div>
+    <div class="app-settings-row" class="menu">
+        <button onclick="setActive()" class="app-settings-button">Включить</button>
+        <button class="app-settings-button">Настройки</button>
+    </div>
+    <script>
+        let isActive
+        const { ipcRenderer } = require('electron')
+        ipcRenderer.send("requestVersion");
+        ipcRenderer.on("version", (event, data) => {
+            console.log(data);
+        })
+        ipcRenderer.on("active", (event, data) => {
+            console.log(data);
+        })
+        function setActive() {
+            ipcRenderer.send('requestActive');
+            if (isActive == true) {
+
+            } else {
+
+            }
+
+        }
+    </script>
+</body>
+
+</html>
